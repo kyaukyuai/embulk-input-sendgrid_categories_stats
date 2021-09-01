@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "embulk-input-sendgrid_categories_stats"
-  spec.version       = "0.1.0"
+  spec.version       = "0.1.1"
   spec.authors       = ["kyaukyuai"]
   spec.summary       = "Sendgrid Categories Stats input plugin for Embulk"
   spec.description   = "Loads records from Sendgrid Categories Stats."
