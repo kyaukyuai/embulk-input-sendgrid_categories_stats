@@ -10,8 +10,8 @@ module Embulk
       def self.transaction(config, &control)
         task = {
           api_key: config.param(:api_key, :string),
-          start_date: config.param(:start_date, :string),
-          end_date: config.param(:end_date, :string, default: 'today'),
+          start_date: config.param(:start_date, :string, default: 'yesterday'),
+          end_date: config.param(:end_date, :string, default: 'yesterday'),
           # TODO: assign multiple categories
           categories: config.param(:categories, :string)
         }
@@ -56,8 +56,8 @@ module Embulk
       def run
         puts "Sendgrid input thread #{@index}..."
 
-        start_date = @task[:start_date] == 'today' ? Date.today : Date.parse(@task[:start_date])
-        end_date   = @task[:end_date] == 'today' ? Date.today : Date.parse(@task[:end_date])
+        start_date = @task[:start_date] == 'yesterday' ? Date.today - 1 : Date.parse(@task[:start_date])
+        end_date   = @task[:end_date] == 'yesterday' ? Date.today - 1 : Date.parse(@task[:end_date])
         categories = @task[:categories]
         endpoint   = 'https://api.sendgrid.com/v3/categories/stats'
 
